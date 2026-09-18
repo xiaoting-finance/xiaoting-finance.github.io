@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="肖蜓｜金融学硕士在读，关注债券承做、投融资、信用风险与数据驱动的金融分析。" />
+  <title>肖蜓 Xiao Ting — Finance · Fixed Income · Risk Analytics</title>
+  <style>
+    :root {
+      --bg: #f5f3ee;
+      --surface: #ffffff;
+      --text: #12201c;
+      --muted: #66736e;
+      --line: #dfe4df;
+      --accent: #155e54;
+      --accent-soft: #dcebe7;
+      --max: 1180px;
+      --shadow: 0 16px 50px rgba(22, 44, 38, .08);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI",
+                   "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    .wrap { width: min(calc(100% - 40px), var(--max)); margin: 0 auto; }
+    .nav {
+      position: sticky; top: 0; z-index: 20;
+      backdrop-filter: blur(14px);
+      background: rgba(245,243,238,.86);
+      border-bottom: 1px solid rgba(18,32,28,.08);
+    }
+    .nav-inner {
+      height: 72px; display:flex; align-items:center; justify-content:space-between; gap:24px;
+    }
+    .brand { font-weight: 780; letter-spacing: -.02em; font-size: 20px; }
+    .nav-links { display:flex; align-items:center; gap: 22px; color:var(--muted); font-size:14px; }
+    .nav-links a:hover { color: var(--accent); }
+    .lang-btn {
+      border: 1px solid var(--line); background: var(--surface); color: var(--text);
+      border-radius: 999px; padding: 8px 13px; cursor:pointer; font-weight: 700;
+    }
+    .hero { padding: 88px 0 54px; }
+    .hero-grid {
+      display:grid; grid-template-columns: 1.55fr .65fr; gap: 72px; align-items:center;
+    }
+    .eyebrow {
+      display:inline-flex; align-items:center; gap:8px;
+      color:var(--accent); font-size:14px; font-weight:760; letter-spacing:.05em;
+      text-transform:uppercase;
+    }
+    .eyebrow::before { content:""; width:28px; height:2px; background:var(--accent); }
+    h1 {
+      font-size: clamp(46px, 7vw, 88px); line-height: .98;
+      letter-spacing: -.055em; margin: 18px 0 20px;
+    }
+    .subtitle {
+      font-size: clamp(20px, 2.4vw, 30px);
+      line-height: 1.35; max-width: 780px; letter-spacing:-.02em;
+    }
+    .lead { color:var(--muted); font-size:17px; max-width: 760px; margin:22px 0 0; }
+    .hero-actions { display:flex; gap:12px; flex-wrap:wrap; margin-top:30px; }
+    .btn {
+      display:inline-flex; align-items:center; justify-content:center;
+      min-height:46px; padding:0 18px; border-radius:10px; font-weight:750; font-size:14px;
+      border:1px solid var(--text); transition:.2s ease;
+    }
+    .btn.primary { background:var(--text); color:white; }
+    .btn.secondary { background:transparent; }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(18,32,28,.10); }
+    .portrait-wrap {
+      position:relative; max-width:330px; justify-self:end;
+    }
+    .portrait {
+      width:100%; aspect-ratio:4/5; object-fit:cover; display:block;
+      border-radius:22px; box-shadow: var(--shadow);
+      filter:saturate(.92) contrast(1.02);
+    }
+    .portrait-note {
+      position:absolute; left:-28px; bottom:18px;
+      background:var(--surface); border:1px solid var(--line);
+      border-radius:14px; padding:12px 14px; box-shadow:var(--shadow);
+      font-size:13px; color:var(--muted);
+    }
+    .portrait-note strong { display:block; color:var(--text); font-size:14px; }
+    section { padding: 74px 0; }
+    .section-head {
+      display:grid; grid-template-columns: 230px 1fr; gap:40px; margin-bottom:32px;
+      border-top:1px solid var(--line); padding-top:28px;
+    }
+    .kicker { font-size:13px; color:var(--accent); font-weight:800; letter-spacing:.08em; text-transform:uppercase; }
+    .section-title { margin:0; font-size:clamp(28px,4vw,46px); line-height:1.14; letter-spacing:-.035em; max-width:780px; }
+    .about-grid { display:grid; grid-template-columns: 1fr 1fr; gap:22px; }
+    .card {
+      background:var(--surface); border:1px solid var(--line); border-radius:18px; padding:26px;
+      box-shadow: 0 1px 0 rgba(0,0,0,.02);
+    }
+    .card h3 { margin:0 0 10px; font-size:20px; letter-spacing:-.02em; }
+    .card p { margin:0; color:var(--muted); }
+    .metric-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:22px; }
+    .metric { background:var(--surface); border:1px solid var(--line); border-radius:16px; padding:20px; }
+    .metric strong { display:block; font-size:30px; letter-spacing:-.04em; }
+    .metric span { display:block; margin-top:4px; color:var(--muted); font-size:13px; }
+    .timeline { display:grid; gap:16px; }
+    .timeline-item {
+      display:grid; grid-template-columns: 180px 1fr; gap:24px;
+      background:var(--surface); border:1px solid var(--line); border-radius:18px; padding:24px;
+    }
+    .date { color:var(--accent); font-weight:800; font-size:13px; letter-spacing:.03em; }
+    .role { margin:0; font-size:21px; letter-spacing:-.02em; }
+    .org { margin:2px 0 14px; color:var(--muted); font-weight:650; }
+    .bullets { margin:0; padding-left:20px; color:var(--muted); }
+    .bullets li + li { margin-top:8px; }
+    .project-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:18px; }
+    .project-card {
+      background:var(--text); color:#fff; border-radius:20px; padding:28px; min-height:310px;
+      display:flex; flex-direction:column; justify-content:space-between;
+    }
+    .project-card:nth-child(2) { background:var(--accent); }
+    .project-card .tag { opacity:.72; font-size:12px; font-weight:760; letter-spacing:.08em; text-transform:uppercase; }
+    .project-card h3 { font-size:26px; line-height:1.2; margin:16px 0 14px; letter-spacing:-.03em; }
+    .project-card p { opacity:.82; margin:0; }
+    .project-stats { display:flex; gap:20px; flex-wrap:wrap; margin-top:26px; }
+    .project-stats strong { display:block; font-size:24px; }
+    .project-stats span { font-size:12px; opacity:.72; }
+    .edu-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:18px; }
+    .edu-card { background:var(--surface); border:1px solid var(--line); border-radius:18px; padding:24px; }
+    .edu-card .school { font-size:20px; font-weight:800; }
+    .edu-card .degree { color:var(--muted); margin-top:5px; }
+    .edu-card .years { color:var(--accent); font-weight:750; margin-top:14px; font-size:13px; }
+    .chips { display:flex; flex-wrap:wrap; gap:10px; margin-top:22px; }
+    .chip { border:1px solid var(--line); background:var(--surface); padding:8px 11px; border-radius:999px; color:var(--muted); font-size:13px; }
+    .contact {
+      background:var(--text); color:white; border-radius:24px; padding:42px;
+      display:grid; grid-template-columns:1fr auto; gap:24px; align-items:center;
+    }
+    .contact h2 { margin:0; font-size:clamp(30px,5vw,56px); letter-spacing:-.045em; line-height:1.05; }
+    .contact p { margin:14px 0 0; opacity:.72; }
+    .contact .btn { border-color:white; color:var(--text); background:white; white-space:nowrap; }
+    footer { padding:34px 0 48px; color:var(--muted); font-size:13px; }
+    .footer-row { display:flex; justify-content:space-between; gap:16px; border-top:1px solid var(--line); padding-top:22px; }
+    [data-lang] { display:none; }
+    body.lang-zh [data-lang="zh"], body.lang-en [data-lang="en"] { display: initial; }
+    body.lang-zh li[data-lang="zh"], body.lang-en li[data-lang="en"] { display:list-item; }
+    body.lang-zh div[data-lang="zh"], body.lang-en div[data-lang="en"],
+    body.lang-zh p[data-lang="zh"], body.lang-en p[data-lang="en"],
+    body.lang-zh h2[data-lang="zh"], body.lang-en h2[data-lang="en"],
+    body.lang-zh h3[data-lang="zh"], body.lang-en h3[data-lang="en"],
+    body.lang-zh span[data-lang="zh"], body.lang-en span[data-lang="en"] { display:block; }
+    @media (max-width: 860px) {
+      .nav-links a { display:none; }
+      .hero { padding-top:56px; }
+      .hero-grid { grid-template-columns:1fr; gap:36px; }
+      .portrait-wrap { justify-self:start; max-width:270px; }
+      .portrait-note { left:18px; bottom:-18px; }
+      .section-head { grid-template-columns:1fr; gap:10px; }
+      .about-grid, .project-grid, .edu-grid { grid-template-columns:1fr; }
+      .metric-grid { grid-template-columns:repeat(2,1fr); }
+      .timeline-item { grid-template-columns:1fr; gap:10px; }
+      .contact { grid-template-columns:1fr; }
+    }
+    @media (max-width: 520px) {
+      .wrap { width:min(calc(100% - 24px), var(--max)); }
+      .nav-inner { height:64px; }
+      h1 { font-size:50px; }
+      section { padding:54px 0; }
+      .metric-grid { grid-template-columns:1fr 1fr; }
+      .card, .timeline-item, .project-card, .edu-card { padding:20px; }
+      .contact { padding:26px; }
+      .footer-row { flex-direction:column; }
+    }
+  </style>
+</head>
+<body class="lang-zh">
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#top">肖蜓 / Xiao Ting</a>
+      <div class="nav-links">
+        <a href="#about"><span data-lang="zh">关于</span><span data-lang="en">About</span></a>
+        <a href="#experience"><span data-lang="zh">经历</span><span data-lang="en">Experience</span></a>
+        <a href="#projects"><span data-lang="zh">项目</span><span data-lang="en">Projects</span></a>
+        <a href="#education"><span data-lang="zh">教育</span><span data-lang="en">Education</span></a>
+        <a href="#contact"><span data-lang="zh">联系</span><span data-lang="en">Contact</span></a>
+        <button class="lang-btn" id="langToggle" aria-label="Switch language">EN</button>
+      </div>
+    </div>
+  </nav>
+
+  <main id="top">
+    <header class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow"><span data-lang="zh">Finance · Fixed Income · Risk Analytics</span><span data-lang="en">Finance · Fixed Income · Risk Analytics</span></div>
+          <h1>肖蜓<br><span style="color:var(--accent)">Xiao Ting</span></h1>
+          <div class="subtitle">
+            <span data-lang="zh">金融学硕士在读 · 债券承做 / 投融资 / 风险分析</span>
+            <span data-lang="en">M.Fin. Candidate · Bond Execution · Corporate Finance · Risk Analytics</span>
+          </div>
+          <p class="lead" data-lang="zh">西南财经大学金融学硕士在读，拥有债券项目承做、财务尽调、融资材料编制与量化行业风险分析经验。关注固定收益、投融资与数据驱动的金融研究。</p>
+          <p class="lead" data-lang="en">Master’s candidate in Finance at Southwestern University of Finance and Economics, with hands-on experience in bond execution, financial due diligence, financing materials, and quantitative industry risk analysis.</p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#experience"><span data-lang="zh">查看经历</span><span data-lang="en">View Experience</span></a>
+            <a class="btn secondary" href="mailto:1770779146@qq.com"><span data-lang="zh">邮件联系</span><span data-lang="en">Email Me</span></a>
+          </div>
+        </div>
+        <div class="portrait-wrap">
+          <img class="portrait" src="assets/profile.jpg" alt="肖蜓 / Xiao Ting portrait">
+          <div class="portrait-note">
+            <strong><span data-lang="zh">金融学 · 硕士在读</span><span data-lang="en">Finance · M.Fin. Candidate</span></strong>
+            <span data-lang="zh">债券 · 投融资 · 风险分析</span><span data-lang="en">Fixed Income · Financing · Risk</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section id="about">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">01 / About</div>
+          <h2 class="section-title" data-lang="zh">用金融基本功 + 数据分析，理解融资、信用与行业风险。</h2>
+          <h2 class="section-title" data-lang="en">Combining finance fundamentals with data analysis to understand financing, credit, and industry risk.</h2>
+        </div>
+        <div class="about-grid">
+          <div class="card">
+            <h3 data-lang="zh">我在做什么</h3><h3 data-lang="en">What I do</h3>
+            <p data-lang="zh">目前聚焦债券承做与投融资相关工作，曾参与公司债投标、立项、申报材料与底稿工作，也参与中期票据注册前期财务尽调与融资底稿整理。</p>
+            <p data-lang="en">I focus on bond execution and corporate financing. My experience includes corporate-bond bids, project initiation, filing materials, working papers, and pre-registration financial due diligence for a medium-term note program.</p>
+          </div>
+          <div class="card">
+            <h3 data-lang="zh">我关注什么</h3><h3 data-lang="en">What interests me</h3>
+            <p data-lang="zh">固定收益、信用风险、企业融资、行业景气与数据驱动的风险识别。希望把严谨的金融分析与可复现的数据方法结合起来。</p>
+            <p data-lang="en">Fixed income, credit risk, corporate financing, industry cycles, and data-driven risk identification—especially work that combines rigorous financial analysis with reproducible methods.</p>
+          </div>
+        </div>
+        <div class="metric-grid">
+          <div class="metric"><strong>3</strong><span data-lang="zh">债券项目投标文件</span><span data-lang="en">bond bid projects</span></div>
+          <div class="metric"><strong>200+</strong><span data-lang="zh">项目底稿与核查文件</span><span data-lang="en">working-paper documents</span></div>
+          <div class="metric"><strong>300+</strong><span data-lang="zh">核心财务数据核验</span><span data-lang="en">financial data checks</span></div>
+          <div class="metric"><strong>30</strong><span data-lang="zh">行业风险量化覆盖</span><span data-lang="en">industries in risk model</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">02 / Experience</div>
+          <h2 class="section-title" data-lang="zh">从债券项目执行，到财务尽调与融资支持。</h2>
+          <h2 class="section-title" data-lang="en">From bond execution to financial due diligence and financing support.</h2>
+        </div>
+        <div class="timeline">
+          <article class="timeline-item">
+            <div class="date">2026.05 — 2026.08</div>
+            <div>
+              <h3 class="role" data-lang="zh">债券承做助理</h3><h3 class="role" data-lang="en">Bond Execution Assistant</h3>
+              <div class="org" data-lang="zh">天府证券有限责任公司</div><div class="org" data-lang="en">Tianfu Securities Co., Ltd.</div>
+              <ul class="bullets">
+                <li data-lang="zh">参与 3 个债券项目投标文件编制，独立撰写投标书、承销方案等核心材料。</li>
+                <li data-lang="en">Supported bid documents for three bond projects and independently drafted proposal and underwriting-plan materials.</li>
+                <li data-lang="zh">协助 3 个公司债项目立项，主笔 2 份立项报告，并完成反洗钱、信息隔离墙、诚信与利益冲突核查。</li>
+                <li data-lang="en">Supported initiation of three corporate-bond projects, serving as primary drafter for two initiation reports and completing compliance checks.</li>
+                <li data-lang="zh">参与募集说明书与 ABS 计划说明书部分章节编制，累计撰写约 200 份底稿说明与核查文件，并处理质控反馈。</li>
+                <li data-lang="en">Contributed to prospectus and ABS plan materials; drafted roughly 200 working-paper and verification documents and addressed quality-control comments.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="timeline-item">
+            <div class="date">2025.04 — 2025.07</div>
+            <div>
+              <h3 class="role" data-lang="zh">财务与投融资支持实习生</h3><h3 class="role" data-lang="en">Finance & Financing Support Intern</h3>
+              <div class="org" data-lang="zh">用友网络科技股份有限公司</div><div class="org" data-lang="en">Yonyou Network Technology Co., Ltd.</div>
+              <ul class="bullets">
+                <li data-lang="zh">协助中期票据注册前期财务尽调，逐笔核对财务报表、账目与原始凭证，累计核验 300 余笔核心财务数据。</li>
+                <li data-lang="en">Supported financial due diligence for a medium-term note registration, verifying 300+ core financial data items against statements, ledgers, and source documents.</li>
+                <li data-lang="zh">按监管要求归集 8 大类融资底稿，并设计标准化目录与索引编码。</li>
+                <li data-lang="en">Organized eight categories of financing working papers and designed a standardized filing and indexing structure.</li>
+                <li data-lang="zh">协助编制注册申请材料、财务摘要及备查文件，累计校对 50 余页申报材料。</li>
+                <li data-lang="en">Assisted with registration materials, financial summaries, and reference files, reviewing 50+ pages for consistency and compliance.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">03 / Projects</div>
+          <h2 class="section-title" data-lang="zh">项目里，我更重视“问题—方法—证据—结论”的完整链条。</h2>
+          <h2 class="section-title" data-lang="en">In project work, I care about the full chain: problem, method, evidence, and conclusion.</h2>
+        </div>
+        <div class="project-grid">
+          <article class="project-card">
+            <div>
+              <div class="tag">Quantitative Risk · Python</div>
+              <h3 data-lang="zh">行业风险评估项目</h3><h3 data-lang="en">Industry Risk Assessment Project</h3>
+              <p data-lang="zh">作为项目负责人，基于 CEIC 的 30 个行业、148 个月数据，从 73 个字段构建 4 维度 11 项风险指标体系，并使用 CRITIC-TOPSIS、PCA、Spearman 与 DTW 完成风险量化与演化模式识别。</p>
+              <p data-lang="en">Led a three-person team using CEIC data across 30 industries and 148 months. Built an 11-indicator risk framework from 73 fields and applied CRITIC-TOPSIS, PCA, Spearman correlation, and DTW clustering.</p>
+            </div>
+            <div class="project-stats">
+              <div><strong>87.8%</strong><span data-lang="zh">PCA 累计方差</span><span data-lang="en">PCA cumulative variance</span></div>
+              <div><strong>ρ=.57</strong><span data-lang="zh">Spearman（p&lt;0.01）</span><span data-lang="en">Spearman (p&lt;0.01)</span></div>
+              <div><strong>45p</strong><span data-lang="zh">分析报告</span><span data-lang="en">analysis report</span></div>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div>
+              <div class="tag">Corporate Finance · Innovation</div>
+              <h3 data-lang="zh">有机太阳能电池材料研发 · 财务分析</h3><h3 data-lang="en">Organic Solar Cell Materials R&D · Financial Analysis</h3>
+              <p data-lang="zh">负责财务预测、产品定价、股本结构设计与融资策略制定，并撰写商业计划书、制作项目 PPT。项目获得第九届中国国际“互联网+”大学生创新创业大赛产业赛道江西省银奖。</p>
+              <p data-lang="en">Led financial forecasting, product pricing, equity-structure design, and financing strategy; also prepared the business plan and project deck. The project received a Jiangxi Provincial Silver Award in the Industry Track of the 9th China International “Internet+” Innovation and Entrepreneurship Competition.</p>
+            </div>
+            <div class="project-stats">
+              <div><strong>Silver</strong><span data-lang="zh">江西省银奖</span><span data-lang="en">Jiangxi Provincial Award</span></div>
+              <div><strong>2023</strong><span data-lang="zh">项目实践</span><span data-lang="en">project period</span></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="education">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">04 / Education & Skills</div>
+          <h2 class="section-title" data-lang="zh">金融学训练为主线，辅以数据分析与实务执行能力。</h2>
+          <h2 class="section-title" data-lang="en">Finance training, strengthened by data analysis and execution experience.</h2>
+        </div>
+        <div class="edu-grid">
+          <div class="edu-card">
+            <div class="school" data-lang="zh">西南财经大学</div><div class="school" data-lang="en">Southwestern University of Finance and Economics</div>
+            <div class="degree" data-lang="zh">金融学 · 硕士（全日制）</div><div class="degree" data-lang="en">Master’s in Finance · Full-time</div>
+            <div class="years">2025.09 — 2028.06</div>
+          </div>
+          <div class="edu-card">
+            <div class="school" data-lang="zh">江西师范大学</div><div class="school" data-lang="en">Jiangxi Normal University</div>
+            <div class="degree" data-lang="zh">金融学 · 本科</div><div class="degree" data-lang="en">Bachelor’s in Finance</div>
+            <div class="years">2021.09 — 2025.06</div>
+          </div>
+        </div>
+
+        <div class="chips">
+          <span class="chip">Python / pandas</span>
+          <span class="chip">Wind</span>
+          <span class="chip">MS Office</span>
+          <span class="chip">CET-6</span>
+          <span class="chip" data-lang="zh">证券从业资格</span><span class="chip" data-lang="en">Securities Qualification</span>
+          <span class="chip" data-lang="zh">基金从业资格</span><span class="chip" data-lang="en">Fund Qualification</span>
+          <span class="chip" data-lang="zh">银行从业资格</span><span class="chip" data-lang="en">Banking Qualification</span>
+        </div>
+
+        <div class="about-grid" style="margin-top:22px;">
+          <div class="card">
+            <h3 data-lang="zh">核心课程</h3><h3 data-lang="en">Selected Coursework</h3>
+            <p data-lang="zh">金融工程（97）、投资银行学（93）、公司金融（93）、投资学（93）、金融经济学（93）、国际金融（93）、金融风险管理（92）等。</p>
+            <p data-lang="en">Financial Engineering (97), Investment Banking (93), Corporate Finance (93), Investments (93), Financial Economics (93), International Finance (93), Financial Risk Management (92), and more.</p>
+          </div>
+          <div class="card">
+            <h3 data-lang="zh">奖项与荣誉</h3><h3 data-lang="en">Awards & Honors</h3>
+            <p data-lang="zh">校级一等奖学金、国家励志奖学金、校级“三好学生”、优秀毕业生、文明大学生等。</p>
+            <p data-lang="en">University First-Class Scholarship, National Encouragement Scholarship, Outstanding Student, Outstanding Graduate, and other university honors.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="wrap">
+        <div class="contact">
+          <div>
+            <h2 data-lang="zh">如果你对债券、投融资或金融分析感兴趣，欢迎交流。</h2>
+            <h2 data-lang="en">Interested in fixed income, financing, or financial analysis? Let’s connect.</h2>
+            <p>1770779146@qq.com</p>
+          </div>
+          <a class="btn" href="mailto:1770779146@qq.com"><span data-lang="zh">发送邮件</span><span data-lang="en">Send Email</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-row">
+      <span>© <span id="year"></span> Xiao Ting</span>
+      <span data-lang="zh">Built as a bilingual personal website · V1</span>
+      <span data-lang="en">Bilingual personal website · V1</span>
+    </div>
+  </footer>
+
+  <script>
+    const body = document.body;
+    const btn = document.getElementById('langToggle');
+    const saved = localStorage.getItem('site-lang');
+    if (saved === 'en') {
+      body.classList.remove('lang-zh');
+      body.classList.add('lang-en');
+      document.documentElement.lang = 'en';
+      btn.textContent = '中文';
+    }
+    btn.addEventListener('click', () => {
+      const isZh = body.classList.contains('lang-zh');
+      body.classList.toggle('lang-zh', !isZh);
+      body.classList.toggle('lang-en', isZh);
+      const next = isZh ? 'en' : 'zh';
+      document.documentElement.lang = next === 'zh' ? 'zh-CN' : 'en';
+      btn.textContent = isZh ? '中文' : 'EN';
+      localStorage.setItem('site-lang', next);
+    });
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
